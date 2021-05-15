@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import UseStateComponent from './Component/UseStateComponent';
 import UseEffectComponent from './Component/UseEffectComponent';
@@ -7,8 +5,10 @@ import UseContextComponent from './Component/UseContextComponent';
 import UseReducerComponent from './Component/UseReducerComponent';
 import UseRefComponent from './Component/UseRefComponent';
 import CustomHookComponent from './Component/CustomHookComponent';
+import CustomElementComponent from './Component/CustomElementComponent';
 
-function App() {
+function App() {  
+
   return (
     <div className="App">
       <header className="App-header">        
@@ -24,6 +24,8 @@ function App() {
         <UseRefComponent />
         <h2>Use CustomHookComponent</h2>
         <CustomHookComponent />
+        <h2>CustomElemenet</h2>
+        <CustomElementComponent />
       </header>
     </div>
   );

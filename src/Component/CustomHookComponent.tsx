@@ -1,51 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-type Beverage = {
-    name: string;
-    productName: string;
-    beverageName: string;
-    beverageColor: string;
-    beverageStyle: string;
-    producerLocation: string;
-    abv: number;
-    ibu: number;
-    logo: string;
-    level: number;
+interface Users {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
 }
 
 interface AjaxReturn<T> {
-    data: T | null;
-    done: boolean;
+  data: T | null;
+  done: boolean;
 }
 
+function UseFetchData<T>(url: string) :AjaxReturn<T> {
+  const [datax, dataxSet] = useState<T | null>(null);
+  const [done, doneSet] = useState(false);
 
-function UseFetchData<T>(
-    url: string
-  ): AjaxReturn<T>{
-    const [data, dataSet] = useState<T | null>(null);
-    const [done, doneSet] = useState(false);
-  
-    useEffect(() => {
-      fetch(url)
-        .then((resp) => resp.json())
-        .then((d: T) => {
-          dataSet(d);
-          doneSet(true);
-        });
-    }, [url]);
-  
-    return {
-      data,
-      done,
-    };
-  }
+  useEffect(() => {
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((d: T) => {
+        dataxSet(d);
+        doneSet(true);
+      });
+  }, [url]);
+
+  return {
+    data: datax,
+    done,
+  };
+}
 
 const CustomHookComponent = () => {
-    return (
-        <div>
+  const { data } = UseFetchData<Users[]>('https://jsonplaceholder.typicode.com/users');
 
-        </div>
-    );
+  // recalculated only when the dependencies has been changed. Optimized the performance
+  const user = useMemo(() => {
+    return (data || []).filter(u => u.name.includes("Leanne"))
+  }, [data]);
+
+  // console.log(user);
+
+  return (
+    <div>
+      <span>Username:</span>
+      {
+        user.length && (
+          <h3>{user[0].username}</h3>
+        )}
+    </div>
+  );
 }
 
 export default CustomHookComponent;

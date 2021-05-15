@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Buy fruit",      
+      "location": "SuperMarket"      
+    },
+    {
+      "name": "Do ",
+      "producerName": "Barley Brown's",
+      "beverageName": "Pallet Jack",
+      "beverageColor": "#EDBD22",
+      "beverageStyle": "IPA",
+      "producerLocation": "Baker City, OR"      
+    },
+    {
+      "name": "beer",
+      "producerName": "Boneyard",
+      "beverageName": "RPM",
+      "beverageColor": "#F7B100",
+      "beverageStyle": "IPA",
+      "producerLocation": "Bend, OR"      
+    }    
+  ]
